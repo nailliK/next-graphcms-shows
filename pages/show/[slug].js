@@ -5,6 +5,7 @@ import FlexyRow from "@c/FlexyRow";
 import {Title} from "@c/Title";
 import {getShowBySlug} from "@l/graphcms";
 import {formatDate, formatUSD} from "@l/utils";
+import Link from 'next/link'
 
 const Markdown = styled(ReactMarkdown)`
   img {
@@ -53,28 +54,12 @@ export default function Shows({show}) {
 			<Markdown source={show.description}/>
 
 			{show.artists.map(artist => (
-				<div key={artist.id}>
+				<Link href={`/artist/${artist.slug}`}>
+				<a key={artist.id}>
 					<ArtistName>{artist.fullName}</ArtistName>
-
 					<Portrait images={artist.images}/>
-
-					<FlexyRow justify="flex-start">
-						<a href={artist.webUrl}
-						   target="_blank">Website
-						</a>
-						<a href={artist.facebookUrl}
-						   target="_blank">Facebook
-						</a>
-						<a href={artist.instagramUrl}
-						   target="_blank">Instagram
-						</a>
-						<a href={artist.youTubeUrl}
-						   target="_blank">YouTube
-						</a>
-					</FlexyRow>
-
-					<Markdown source={artist.bio}/>
-				</div>
+				</a>
+				</Link>
 			))}
 		</Layout>
 	);

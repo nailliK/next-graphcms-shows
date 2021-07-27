@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Layout from "@c/Layout";
 import FlexyRow from "@c/FlexyRow";
 import {Title} from "@c/Title";
-import {getShowBySlug} from "@l/graphcms";
+import {getArtistBySlug} from "@l/graphcms";
 
 const Markdown = styled(ReactMarkdown)`
   img {
@@ -46,41 +46,41 @@ export default function Artists({artist}) {
 
 			<Title>{artist.fullName}</Title>
 
-			{show.artists.map(artist => (
-				<div key={artist.id}>
-					<ArtistName>{artist.fullName}</ArtistName>
+			<ArtistName>{artist.fullName}</ArtistName>
 
-					<Portrait images={artist.images}/>
+			<Portrait images={artist.images}/>
 
-					<FlexyRow justify="flex-start">
-						<a href={artist.webUrl}
-						   target="_blank">Website
-						</a>
-						<a href={artist.facebookUrl}
-						   target="_blank">Facebook
-						</a>
-						<a href={artist.instagramUrl}
-						   target="_blank">Instagram
-						</a>
-						<a href={artist.youTubeUrl}
-						   target="_blank">YouTube
-						</a>
-					</FlexyRow>
+			<FlexyRow justify="flex-start">
+				<a href={artist.webUrl}
+				   target="_blank">Website
+				</a>
+				<a href={artist.facebookUrl}
+				   target="_blank">Facebook
+				</a>
+				<a href={artist.instagramUrl}
+				   target="_blank">Instagram
+				</a>
+				<a href={artist.youTubeUrl}
+				   target="_blank">YouTube
+				</a>
+				<a href={artist.spotifyUrl}
+				   target="_blank">Spotify
+				</a>
+			</FlexyRow>
 
-					<Markdown source={artist.bio}/>
-				</div>
-			))}
+			<Markdown source={artist.bio}/>
+
 		</Layout>
 	);
 }
 
 export async function getServerSideProps({params}) {
 	const {slug} = params;
-	const show = (await getShowBySlug(slug));
+	const artist = (await getArtistBySlug(slug));
 
-	if (show) {
+	if (artist) {
 		return {
-			props: {show}
+			props: {artist}
 		};
 	} else {
 		return {
