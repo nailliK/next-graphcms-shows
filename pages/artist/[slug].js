@@ -4,7 +4,6 @@ import Layout from "@c/Layout";
 import FlexyRow from "@c/FlexyRow";
 import {Title} from "@c/Title";
 import {getShowBySlug} from "@l/graphcms";
-import {formatDate, formatUSD} from "@l/utils";
 
 const Markdown = styled(ReactMarkdown)`
   img {
@@ -39,18 +38,13 @@ const Portrait = ({images = []}) => {
 	return null;
 };
 
-export default function Shows({show}) {
+export default function Artists({artist}) {
 	return (
-		<Layout title={`${show.title} / next-graphcms-shows`}
+		<Layout title={`${artist.fullName.title} / next-graphcms-shows`}
 		        maxWidth="900px"
-		        padding="0 2em"> <Title>{show.title}</Title>
+		        padding="0 2em">
 
-			<FlexyRow>
-				<span>Price: {formatUSD(show.ticketPrice)}</span>
-				<span>{formatDate(show.scheduledStartTime)}</span>
-			</FlexyRow>
-
-			<Markdown source={show.description}/>
+			<Title>{artist.fullName}</Title>
 
 			{show.artists.map(artist => (
 				<div key={artist.id}>
