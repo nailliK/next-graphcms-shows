@@ -51,21 +51,31 @@ export default function Artists({artist}) {
 			<Portrait images={artist.images}/>
 
 			<FlexyRow justify="flex-start">
+
+				{artist.webUrl &&
 				<a href={artist.webUrl}
-				   target="_blank">Website
-				</a>
+				   target="_blank">Website </a>
+				}
+
+				{artist.facebookUrl &&
 				<a href={artist.facebookUrl}
-				   target="_blank">Facebook
-				</a>
+				   target="_blank">Facebook </a>
+				}
+
+				{artist.instagramUrl &&
 				<a href={artist.instagramUrl}
-				   target="_blank">Instagram
-				</a>
+				   target="_blank">Instagram </a>
+				}
+
+				{artist.youTubeUrl &&
 				<a href={artist.youTubeUrl}
-				   target="_blank">YouTube
-				</a>
+				   target="_blank">YouTube </a>
+				}
+
+				{artist.spotifyUrl &&
 				<a href={artist.spotifyUrl}
-				   target="_blank">Spotify
-				</a>
+				   target="_blank">Spotify </a>
+				}
 			</FlexyRow>
 
 			<Markdown source={artist.bio}/>
